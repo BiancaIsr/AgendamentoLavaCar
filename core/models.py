@@ -8,9 +8,10 @@ class Cliente(models.Model):
         return self.nome
 
 class Veiculo(models.Model):
-placa = models.CharField(max_length=20, unique=True)    modelo = models.CharField(max_length=100)
-    cor = models.CharField(mas_length=40)
-    cliente = models.FireignKey(Cliente, on_delete=models.CASCADE)
+    placa = models.CharField(max_length=20, unique=True)
+    modelo = models.CharField(max_length=100)
+    cor = models.CharField(max_length=40)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.modelo} - {self.placa}"
