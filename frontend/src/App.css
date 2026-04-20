@@ -1,0 +1,37 @@
+/* Container Geral */
+.App {
+  text-align: center;
+  background-color: #b5d7f5; /* Fundo lilás suave */
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Título Superior */
+.App-header {
+  padding: 30px;
+  color: #1f7ac9;
+}
+
+/* Layout Lado a Lado */
+.App-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px; /* Espaço entre o formulário e a tabela */
+  padding: 0 40px 40px 40px;
+  flex-wrap: wrap; /* Empilha no celular, fica lado a lado no PC */
+}
+
+/* Coluna do Formulário (Menor) */
+.coluna-esquerda {
+  flex: 1;
+  max-width: 400px;
+  min-width: 320px;
+}
+
+/* Coluna da Tabela (Maior) */
+.coluna-direita {
+  flex: 2;
+  max-width: 900px;
+  min-width: 500px;
+}
