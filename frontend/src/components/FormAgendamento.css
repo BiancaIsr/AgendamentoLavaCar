@@ -1,0 +1,49 @@
+.form-agendamento {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.form-agendamento h3 {
+    margin-top: 0;
+    color: #4b0082; /* Indigo/Roxo */
+    text-align: center;
+}
+
+.campo {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.campo input, .campo select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.botao-agendar {
+    width: 100%;
+    padding: 12px;
+    background-color: #9966CC; /* Lilás que usamos no login */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.botao-agendar:hover {
+    background-color: #7a4eb3;
+}
