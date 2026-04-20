@@ -8,7 +8,7 @@
 
 .form-agendamento h3 {
     margin-top: 0;
-    color: #4b0082; /* Indigo/Roxo */
+    color: #1f7ac9; /* Indigo/Roxo */
     text-align: center;
 }
 
@@ -35,7 +35,7 @@
 .botao-agendar {
     width: 100%;
     padding: 12px;
-    background-color: #9966CC; /* Lilás que usamos no login */
+    background-color: #2d97f3; /* Lilás que usamos no login */
     color: white;
     border: none;
     border-radius: 6px;
@@ -45,5 +45,5 @@
 }
 
 .botao-agendar:hover {
-    background-color: #7a4eb3;
+    background-color: #1f7ac9;
 }

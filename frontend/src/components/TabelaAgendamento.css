@@ -1,0 +1,43 @@
+.tabela-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.tabela-container h3 {
+    color: #1f7ac9;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #f3e5f5;
+    color: #070707;
+    font-size: 0.9rem;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #f9f9f9;
+    font-size: 0.85rem;
+    color: #333;
+}
+
+/* Estilo das etiquetas de status */
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.badge.pendente { background: #fff3cd; color: #856404; }
+.badge.concluído { background: #d4edda; color: #155724; }

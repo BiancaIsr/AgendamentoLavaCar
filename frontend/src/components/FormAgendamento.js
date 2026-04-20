@@ -20,9 +20,9 @@ class FormAgendamento extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Dados salvos no State:", this.state);
-    alert(`Agendamento de ${this.state.veiculo} para o cliente ${this.state.cliente} realizado!`);
-    // Aqui no futuro chamaremos a API do Django usando Axios
+    // Chama a função que veio via props do App.js
+    this.props.aoSalvar(this.state);
+    alert("Agendamento adicionado na lista!");
   }
 
   render() {
@@ -32,12 +32,12 @@ class FormAgendamento extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="campo">
             <label>Nome do Cliente</label>
-            <input type="text" name="cliente" placeholder="Ex: Matheus" onChange={this.handleChange} required />
+            <input type="text" name="cliente" placeholder="" onChange={this.handleChange} required />
           </div>
 
           <div className="campo">
             <label>Veículo / Modelo</label>
-            <input type="text" name="veiculo" placeholder="Ex: Fiat Argo" onChange={this.handleChange} required />
+            <input type="text" name="veiculo" placeholder="" onChange={this.handleChange} required />
           </div>
 
           <div className="campo">
