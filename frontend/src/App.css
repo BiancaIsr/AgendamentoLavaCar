@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+  background-color: #F3E5F5; /* Aquele lilás de fundo */
+  min-height: 100vh;
+}
+
+.App-header {
+  padding: 20px;
+  color: #4a148c;
+}
+
+.App-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap; /* Se a tela for pequena, ele empilha sozinho */
+}
+
+.coluna-form {
+  flex: 1;
+  max-width: 400px;
+}
+
+.coluna-tabela {
+  flex: 2;
+  max-width: 800px;
+}
