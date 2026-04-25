@@ -39,8 +39,8 @@ jobs:
           docker build -t agendamento-lavacar:latest .
 
       - name: Enviar Alerta para o Discord
-              uses: Ilshidur/action-discord@master
-              env:
-                DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-              with:
-                args: '====> Sucesso! O workflow do Lava Car rodou!'
+        uses: Ilshidur/action-discord@master
+        env:
+            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+            args: '====> Sucesso! O workflow do Lava Car rodou!'
