@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Agendamento 
+from .models import Agendamento, Veiculo
 class AgendamentoTestCase(TestCase):
 
     def setUp(self):
