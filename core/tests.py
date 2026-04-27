@@ -7,9 +7,15 @@ class AgendamentoTestCase(TestCase):
         """
         Este método cria um objeto de teste inicial antes de cada teste abaixo rodar.
         """
+        self.veiculo_teste = Veiculo.objects.create(
+            # Coloque aqui os campos que o seu Veiculo exige. Exemplo:
+            marca="VW",
+            modelo="Fusca" 
+        )
         self.agendamento = Agendamento.objects.create(
+
             cliente="Bianca",
-            veiculo="Carro de Teste",
+            veiculo=self.veiculo_teste,
             placa="ABC-1234",
             servico="Lavagem Completa"
         )
