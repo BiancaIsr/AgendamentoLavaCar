@@ -2,7 +2,7 @@ name: CI/CD Pipeline Agendamento Lava Car
 
 on:
   push:
-    branches: [ main, feat-ci/cd ]
+    branches: [ main, feat-ci/cd, feat/testes-unitarios ]
   pull_request:
     branches: [ main ]
 
@@ -22,6 +22,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      # --- A MÁGICA ACONTECE AQUI ---
+      - name: Preparar Banco de Dados (Migrations)
+        run: |
+          python manage.py makemigrations
+          python manage.py migrate
+      # ------------------------------
 
       - name: Rodar Testes
         run: |
