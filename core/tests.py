@@ -1,44 +1,59 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Agendamento, Veiculo
+from django.utils import timezone
+from datetime import timedelta
+from .models import Cliente, Veiculo, Agendamento
+
 class AgendamentoTestCase(TestCase):
 
     def setUp(self):
-      
+        # 1. Primeiro criamos um Cliente real no banco de testes
+        self.cliente_teste = Cliente.objects.create(
+            nome="Bianca Developer",
+            telefone="41999999999"
+        )
+
+        # 2. Depois criamos um Veículo e ligamos ele ao Cliente acima
         self.veiculo_teste = Veiculo.objects.create(
-            nome="BMW", 
-            placa="ABC-1234" 
-        )
-
-        # 2. O agendamento continua igual
-        self.agendamento = Agendamento.objects.create(
-            cliente="Bianca Developer",
-            veiculo=self.veiculo_teste, 
             placa="ABC-1234",
-            servico="Lavagem Completa"
+            modelo="BMW X1",
+            cor="Preto",
+            cliente=self.cliente_teste  # Ligação da Chave Estrangeira
         )
 
-    # Teste 1: Verifica se os dados do cliente e veículo foram gravados com sucesso
-    def test_criacao_agendamento(self):
-        self.assertEqual(self.agendamento.cliente, "Bianca Developer")
-        self.assertEqual(self.agendamento.veiculo, self.veiculo_teste)
+        # 3. Pegamos a hora atual para o agendamento
+        agora = timezone.now()
 
-    # Teste 2: Verifica se a placa foi salva exatamente como o esperado
-    def test_validacao_placa(self):
-        self.assertEqual(self.agendamento.placa, "ABC-1234")
+        # 4. Finalmente, criamos o Agendamento com todos os campos obrigatórios
+        self.agendamento = Agendamento.objects.create(
+            veiculo=self.veiculo_teste,
+            data_hora_agendamento=agora,
+            previsao_entrega=agora + timedelta(hours=2),
+            servico="Lavagem Completa",
+            valor_total=150.00
+        )
 
-    # Teste 3: Verifica se o serviço cadastrado é o correto (lógica de negócio)
-    def test_tipo_servico(self):
+    # Teste 1: Verifica se o serviço e o valor foram salvos corretamente
+    def test_dados_agendamento(self):
         self.assertEqual(self.agendamento.servico, "Lavagem Completa")
+        self.assertEqual(self.agendamento.valor_total, 150.00)
 
-    # Teste 4: Verifica a representação em string do modelo (método __str__)
-    def test_representacao_string(self):
-        esperado = f"{self.agendamento.cliente} - {self.agendamento.veiculo}"
+    # Teste 2: Verifica se o status inicial padrão é 'AGUARDANDO'
+    def test_status_padrao(self):
+        self.assertEqual(self.agendamento.status, 'AGUARDANDO')
+
+    # Teste 3: Verifica se o agendamento consegue acessar o nome do cliente através do veículo
+    def test_relacionamento_cliente_veiculo(self):
+        self.assertEqual(self.agendamento.veiculo.cliente.nome, "Bianca Developer")
+
+    # Teste 4: Verifica a formatação em texto (__str__) do Agendamento
+    def test_representacao_string_agendamento(self):
+        data_formatada = self.agendamento.data_hora_agendamento.strftime('%d/%m/%Y %H:%M')
+        esperado = f"Agendamento: {self.veiculo_teste} - {data_formatada}"
         self.assertEqual(str(self.agendamento), esperado)
 
-    # Teste 5: Verifica se a página inicial do sistema está carregando (Status 200)
+    # Teste 5: Verifica se a página inicial está no ar (Status 200)
     def test_acesso_pagina_home(self):
-        # Substitua 'home' pelo 'name' que você deu para a rota da sua página principal no urls.py
         url = reverse('home') 
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
