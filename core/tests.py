@@ -4,18 +4,16 @@ from .models import Agendamento, Veiculo
 class AgendamentoTestCase(TestCase):
 
     def setUp(self):
-        """
-        Este método cria um objeto de teste inicial antes de cada teste abaixo rodar.
-        """
+      
         self.veiculo_teste = Veiculo.objects.create(
-            # Coloque aqui os campos que o seu Veiculo exige. Exemplo:
-            marca="VW",
-            modelo="Fusca" 
+            nome="BMW", 
+            placa="ABC-1234" 
         )
-        self.agendamento = Agendamento.objects.create(
 
-            cliente="Bianca",
-            veiculo=self.veiculo_teste,
+        # 2. O agendamento continua igual
+        self.agendamento = Agendamento.objects.create(
+            cliente="Bianca Developer",
+            veiculo=self.veiculo_teste, 
             placa="ABC-1234",
             servico="Lavagem Completa"
         )
@@ -23,7 +21,7 @@ class AgendamentoTestCase(TestCase):
     # Teste 1: Verifica se os dados do cliente e veículo foram gravados com sucesso
     def test_criacao_agendamento(self):
         self.assertEqual(self.agendamento.cliente, "Bianca Developer")
-        self.assertEqual(self.agendamento.veiculo, "Carro de Teste")
+        self.assertEqual(self.agendamento.veiculo, self.veiculo_teste)
 
     # Teste 2: Verifica se a placa foi salva exatamente como o esperado
     def test_validacao_placa(self):
